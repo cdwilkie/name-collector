@@ -1,7 +1,14 @@
 import java.util.Scanner;
 
-public static void main() {
 
-   Scanner scanner = new Scanner(system.in);
+class Main {
+   public static void main(String[] args) {
+
+      Scanner scanner = new Scanner(System.in);
+      System.out.println("Please input a series of characters");
+      String newName = scanner.nextLine();
+      System.out.println("You enetered " + newName);
+
+   }
 
 }
