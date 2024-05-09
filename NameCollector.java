@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-class Main {
+class NameCollector {
    public static void main(String[] args) {
 
       Scanner scanner = new Scanner(System.in);
