@@ -3,7 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * Creates and makes visible a JFrame window.
+ * Creates and makes visible a JFrame window for a
+ * standard 'Hello, World' demo.
  * 
  */
 public class HelloJava2 {
@@ -22,7 +23,7 @@ public class HelloJava2 {
         frame.setVisible(true);
         
     }// end main
-}
+}//end HelloJava2
 
 /**
  * Creates a mouse-draggable string component.
@@ -40,14 +41,14 @@ class HelloComponent2 extends JComponent
     public HelloComponent2(String message) {
         this.message = message;
         addMouseMotionListener(this);
-    }
+    }//end Constructor
 /**
  * Override that draws the message at the x and y coordinates
  * @param g Graphics area for drawing
  */
     public void paintComponent(Graphics g) {
         g.drawString(message, messageX, messageY);
-    }
+    }//end paintComponent()
 
 /**
  * Collects the x and y coordinate of the mouse cursor when dragged
@@ -58,7 +59,7 @@ class HelloComponent2 extends JComponent
         messageY = e.getY();
 
         repaint();
-    }
+    }//end mouseDragged()
 
 /**
  * Not currently implemented. Will detail behavior
@@ -66,8 +67,8 @@ class HelloComponent2 extends JComponent
  */    
     public void mouseMoved(MouseEvent e) {
 
-    }
+    }//end mouseMoved()
 
 
-}
+}//end HelloComponenet2
 
