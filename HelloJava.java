@@ -1,7 +1,8 @@
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+//import javax.swing.*;
+//import java.awt.*;
+//import java.awt.event.*;
+import javax.swing.JFrame;
 
 public class HelloJava{
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class HelloJava{
         });
     */
     }
-
+    /*
     private static void createAndShowGUI() {
         JFrame frame = new JFrame("Frame Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,4 +33,5 @@ public class HelloJava{
         frame.pack();
         frame.setVisible(true);
     }
+    */
 }
