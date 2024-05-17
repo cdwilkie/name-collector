@@ -1,50 +1,58 @@
 import java.util.Scanner;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 
-public class NameCollector extends JFrame{
-   JFrame baseFrame;
-   JLabel nameFieldLabel;
-   JTextField nameTextField;
-   
+
+/** NameCollector is a program that prompts the user for
+ * information: Name (string), age (int), and height (double).
+ * Information is the output to screen 
+ */
+
+public class NameCollector {
+   private String startPrompt, userName;
+   private int userAge;
+   private double userInches;
+   private Scanner scanner;
+
    public NameCollector() {
-      baseFrame = new JFrame("Name Collector");
-      this.setLayout(new FlowLayout());
-      nameFieldLabel = new JLabel("Name: ");
-      nameTextField = new JTextField(30);
-      this.add(nameFieldLabel);
-      this.add(nameTextField);
+      setPrompt();
+      showPrompt();
+      scanner = new Scanner(System.in);
+      userName = scanner.next();
+      userAge = scanner.nextInt();
+      userInches = scanner.nextDouble();
+      showResults();
+
+      
+
    }
 
-   public String getName() {
-      return nameTextField.getText();
+   private void setPrompt() {
+      this.startPrompt = "Welcome! Please enter your name, age, and height (inches)";
    }
 
-   public void paintComponent(Graphics g) {
-      g.drawString(this.getName(), 125, 95);
+   private void showPrompt() {
+      System.out.println(this.startPrompt);
    }
-   
-   
+
+   public void showResults() {
+      String outputMessage = "The information you provided\n";
+      outputMessage += "\tName:\t" + userName + "\n";
+      outputMessage += "\tAge:\t" + userAge + "\n";
+      outputMessage += "\tHeight:\t" + userInches + "\n";
+      System.out.println(outputMessage);
+   }
+  
+  
+  
+  
+  
+  
+  
+  
    public static void main(String[] args) {
-      /* 
-      Scanner scanner = new Scanner(System.in);
-      System.out.println("Please input a series of characters");
-      String newName = scanner.nextLine();
-      System.out.println("You enetered " + newName);
-      scanner.close();
-      */
-      NameCollector newDemo = new NameCollector();
-      newDemo.setSize(500, 500);
-      newDemo.setVisible(true);
-      newDemo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      NameCollector nameDemo = new NameCollector();
 
-      while (true) {
-         newDemo.repaint();
-      }
-      
-      
-   }
+
+   }//end main()
 
 }
