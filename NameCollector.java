@@ -24,7 +24,7 @@ public class NameCollector {
    }//end Constructor
 
    private void setPrompt() {
-      thePrompt = "Welcome!\nPlease enter your: <Name>, <Age>, and <Height-Inches>";
+      thePrompt = "Welcome!\nPlease enter your: <First-Name>, <Age>, and <Height-Inches>";
    }//end setPrompt()
    
    public String getPrompt() {
