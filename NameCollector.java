@@ -8,51 +8,84 @@ import java.util.Scanner;
  */
 
 public class NameCollector {
-   private String startPrompt, userName;
+   
+   private String thePrompt, userName, outputMessage;
    private int userAge;
    private double userInches;
-   private Scanner scanner;
 
    public NameCollector() {
       setPrompt();
-      showPrompt();
-      scanner = new Scanner(System.in);
-      userName = scanner.next();
-      userAge = scanner.nextInt();
-      userInches = scanner.nextDouble();
-      showResults();
+      userName = "";
+      userAge = 0;
+      userInches = 0.0;
+   }
+
+   public void setPrompt() {
+      thePrompt = "Welcome!\nPlease enter your: <Name>, <Age>, and <Height-Inches>";
+   }
+   
+   public String getPrompt() {
+      return thePrompt;
+   }
+
+   public void showPrompt() {
+      System.out.println(thePrompt);
+   }
+
+   public void setUserName(String inputName) {
+      userName = inputName;
+   }
+
+   public String getUsername() {
+      return userName;
+   }
+
+   public void setAge(int inputAge) {
+      userAge = inputAge;
+   }
+
+   public int getAge() {
+      return userAge;
+   }
+
+   public void setInches(double inputInches) {
+      userInches = inputInches;
+   }
+
+   public double getInches() {
+      return userInches;
+   }
+
+   public void setOutputMessage() {
+      outputMessage = "You entered:\n\tName:\t" + userName;
+      outputMessage += "\n\tAge:\t" + userAge;
+      outputMessage += "\n\tInches:\t" + userInches;
+   }
+
+   public String getOutputMessage() {
+      return outputMessage;
+   }
+   
+   public static void main(String[] args) {
+      //Scanner scanner = new Scanner(System.in);
+      NameCollector newDemo = new NameCollector();
+      newDemo.showPrompt();
+
+      try (Scanner scanner = new Scanner(System.in)) 
+      {
+         newDemo.setUserName(scanner.next());
+         newDemo.setAge(scanner.nextInt());
+         newDemo.setInches(scanner.nextDouble());
+         newDemo.setOutputMessage();
+         System.out.println(newDemo.getOutputMessage());
+      }
+      catch (Exception e) {
+         System.out.println("Something wrong occured");
+      }
 
       
-
+      
+      
    }
-
-   private void setPrompt() {
-      this.startPrompt = "Welcome! Please enter your name, age, and height (inches)";
-   }
-
-   private void showPrompt() {
-      System.out.println(this.startPrompt);
-   }
-
-   public void showResults() {
-      String outputMessage = "The information you provided\n";
-      outputMessage += "\tName:\t" + userName + "\n";
-      outputMessage += "\tAge:\t" + userAge + "\n";
-      outputMessage += "\tHeight:\t" + userInches + "\n";
-      System.out.println(outputMessage);
-   }
-  
-  
-  
-  
-  
-  
-  
-  
-   public static void main(String[] args) {
-      NameCollector nameDemo = new NameCollector();
-
-
-   }//end main()
 
 }
