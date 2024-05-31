@@ -14,7 +14,7 @@ public class NameCollector {
       Scanner scanner = new Scanner(System.in);
       NameCollector newDemo = new NameCollector(scanner);
       newDemo.run();
-   }
+   }// end main()
 
 
    private String userName;
@@ -74,7 +74,7 @@ public class NameCollector {
       System.out.println(
          "Hello " + userName + ". You are " +
          userAge + " years old and " + userInches +
-         " tall."
+         " inches tall."
       );
    }//end showResults()
 
@@ -85,13 +85,14 @@ public class NameCollector {
          this.userAge = scanner.nextInt();
          this.userInches = scanner.nextDouble();
          showResults();
-      }
+      }  
       catch (Exception e) {
          System.out.println(
             "Error - Please Enter only your first name, your age, and your " + 
             "height (in inches)"
             );
       }
+
    }
 
 
