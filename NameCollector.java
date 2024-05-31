@@ -2,97 +2,97 @@ import java.util.Scanner;
 
 
 
-/** NameCollector is a program that prompts the user for
+/** NameCollector is a class that prompts the user for
  * information: Name (string), age (int), and height (double).
- * Information is the output to screen 
+ * Information is the output to screen. Contains a main() driver
+ * to demonstrate class functionality. 
  */
 
 public class NameCollector {
-   
-   private String thePrompt, userName, outputMessage;
+
+   public static void main (String [] args) {
+      Scanner scanner = new Scanner(System.in);
+      NameCollector newDemo = new NameCollector(scanner);
+      newDemo.run();
+   }
+
+
+   private String userName;
    private int userAge;
    private double userInches;
+   private Scanner scanner;
 
-   /**
-    * Constructor initializes all variables with values
-    */
+   // Constructors
+   // Default initializes userName, userAge, and userInches
    public NameCollector() {
-      setPrompt();
       userName = "";
       userAge = 0;
       userInches = 0.0;
-   }//end Constructor
+   }
 
-   private void setPrompt() {
-      thePrompt = "Welcome!\nPlease enter your: <First-Name>, <Age>, and <Height-Inches>";
-   }//end setPrompt()
-   
-   public String getPrompt() {
-      return thePrompt;
-   }//end getPrompt()
+   // Overloaded constructor accepts scanner reference
+   public NameCollector (Scanner scanner) {
+      this();
+      this.scanner = scanner;
+   }
 
-   public void showPrompt() {
-      System.out.println(thePrompt);
-   }//end showPrompt()
-
-   public void setUserName(String inputName) {
-      userName = inputName;
-   }//end setUserName()
-
-   public String getUsername() {
+   // Getters
+   public String getName() {
       return userName;
-   }//end getUserName
-
-   public void setAge(int inputAge) {
-      userAge = inputAge;
-   }//end setAge()
+   }//end getName()
 
    public int getAge() {
       return userAge;
-   }// end getAge()
-
-   public void setInches(double inputInches) {
-      userInches = inputInches;
-   }//end setInches()
+   }//end getAge()
 
    public double getInches() {
       return userInches;
-   }//end getInches()
+   }//end userInches()
 
-   public void setOutputMessage() {
-      outputMessage = "You entered:\n\tName:\t" + userName;
-      outputMessage += "\n\tAge:\t" + userAge;
-      outputMessage += "\n\tInches:\t" + userInches;
-   }//end setOuputMessage
+   // Setters
+   public void setName(String userName) {
+      this.userName = userName;
+   }//end setName()
 
-   public String getOutputMessage() {
-      return outputMessage;
-   }//end getOutputMessage
-   
-/**
- * Constructs an instance of NameCollector to store
- * the user provided <Name>, <Age>, and <Inches>. Attempts
- * to collect the information from System.in and display
- * the data to console.
- * @param args command line input - not used
- */
-   public static void main(String[] args) {
-      //Scanner scanner = new Scanner(System.in);
-      NameCollector newDemo = new NameCollector();
-      newDemo.showPrompt();                     // Print prompt to console
+   public void setAge(int userAge) {
+      this.userAge = userAge;
+   }//end setAge()
 
-      try (Scanner scanner = new Scanner(System.in)) 
-      {
-         newDemo.setUserName(scanner.next());   // Store username from input
-         newDemo.setAge(scanner.nextInt());     // Store userage from input
-         newDemo.setInches(scanner.nextDouble());// Store userInches from input
-         newDemo.setOutputMessage();            // Update the output message
-         System.out.println(newDemo.getOutputMessage());//Display data to console
-      }//end try
+   public void setInches(double userInches) {
+      this.userInches = userInches;
+   }//end setInches()
+
+   // Messages
+   public void greetUser() {
+      System.out.println(
+         "Hello, User.\n\nPlease enter your:\n" +
+         "\tFirst Name:\n\tAge:\n\tHeight(Inches)\n"
+      );
+   }//end greetUser()
+
+   public void showResults() {
+      System.out.println(
+         "Hello " + userName + ". You are " +
+         userAge + " years old and " + userInches +
+         " tall."
+      );
+   }//end showResults()
+
+   public void run() {
+      greetUser();
+      try {
+         this.userName = scanner.next();
+         this.userAge = scanner.nextInt();
+         this.userInches = scanner.nextDouble();
+         showResults();
+      }
       catch (Exception e) {
-         System.out.println("Something wrong occured");
-      }//end catch
-      
-   }//end main()
+         System.out.println(
+            "Error - Please Enter only your first name, your age, and your " + 
+            "height (in inches)"
+            );
+      }
+   }
+
 
 }//end NameCollector
