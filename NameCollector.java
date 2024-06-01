@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -13,7 +14,8 @@ public class NameCollector {
    public static void main (String [] args) {
       Scanner scanner = new Scanner(System.in);
       NameCollector newDemo = new NameCollector(scanner);
-      newDemo.run();
+      newDemo.run();                            //Begins the console interface
+      
    }// end main()
 
 
@@ -71,11 +73,10 @@ public class NameCollector {
    }//end greetUser()
 
    public void showResults() {
-      System.out.println(
-         "Hello " + userName + ". You are " +
-         userAge + " years old and " + userInches +
-         " inches tall."
-      );
+
+      System.out.printf(
+         "Hello %s. You are %d years old and %.2f inches tall.\n", 
+         userName, userAge, userInches);
    }//end showResults()
 
    public void run() {
@@ -86,11 +87,14 @@ public class NameCollector {
          this.userInches = scanner.nextDouble();
          showResults();
       }  
-      catch (Exception e) {
+      catch (InputMismatchException e) {
          System.out.println(
             "Error - Please Enter only your first name, your age, and your " + 
             "height (in inches)"
             );
+      }
+      catch (Exception e) {
+         System.out.println("Error");
       }
 
    }
