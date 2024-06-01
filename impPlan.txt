@@ -1,0 +1,22 @@
+Requirements Program 1:
+    Prompts user for Name, Age, Height
+
+    Collects Name - string
+    Collects Age - int
+    Collects Height - inches - double
+
+    Outputs data in message:
+    "Hello <name>. You are <age> years old and <inches> inches tall."
+
+Design:
+    class NameCollector {}
+        Constructors //uses scanner?
+        Getters & Setters
+        
+    vars
+        int age
+        string name
+        string Prompts
+        string Outputs
+        double inches
+    
