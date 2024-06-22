@@ -111,6 +111,7 @@ public class NameGUI {
         JFormattedTextField ageField = new JFormattedTextField(
             NumberFormat.getIntegerInstance());
         ageField.setColumns(14);
+        ageField.setText("Enter Age");
 
         // Create Layout Constraints
         GridBagConstraints layoutConstraints = new GridBagConstraints();
@@ -177,6 +178,7 @@ public class NameGUI {
         JFormattedTextField inchesField = new JFormattedTextField(
             DecimalFormat.getInstance());
         inchesField.setColumns(15);
+        inchesField.setText("Enter Inches Tall");
 
         // Create Layout Constraints
         GridBagConstraints layoutConstraints = new GridBagConstraints();
