@@ -15,6 +15,7 @@ public class NameGUI {
     }
 
     private static void addNameComponents(JPanel targetPanel) {
+        //TODO
         //create label
         //create field
         //create constraints
@@ -51,7 +52,7 @@ public class NameGUI {
     }//end addNamePanel()
 
     private static void addAgeComponents(JPanel targetPanel) {
-
+        //TODO
     }
 
     /**
@@ -80,22 +81,36 @@ public class NameGUI {
     }//end addAgePanel()
 
     private static void addInchesComponents(JPanel targetPanel) {
-
+        //TODO
     }
 
     private static void addInchesPanel(
-        JPanel targetPanel, JFrame targetFrame) {
+            JPanel targetPanel, JFrame targetFrame) {
+        // Create constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
 
-    }
+        // format panel constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 2;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // add panel to frame with constraints
+        targetFrame.add(targetPanel, layoutConstraints);
+    }//end addInchesPanel()
 
     private static void addAcceptComponents(JPanel targetPanel) {
-
+        //TODO
     }
 
     private static void addAcceptPanel(
         JPanel targetPanel, JFrame targetFrame) {
-
+        //TODO
     }
+
     /**
      * Initializes the necessary components to build the GUI
      * for the NameCollector program. Utilizes a <code>JFrame
@@ -140,7 +155,6 @@ public class NameGUI {
         addAcceptPanel(acceptPanel, mainFrame);
         // Customize JFrame
         customizeFrame(mainFrame);
-       
     }//end buildFrameUI()
 
     /**
