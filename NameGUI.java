@@ -25,11 +25,30 @@ public class NameGUI {
 
     }
 
+    /**
+     * Adds the target <code>JPanel</code> to the target <code>
+     * JFrame</code>. Utilizes <code>GridBagLayout</code> as layout
+     * manager to place the Name Panel within the main UI frame.
+     * @param targetPanel <code>JPanel</code> to be added 
+     * to <code>JFrame</code>
+     * @param targetFrame <code>JFrame</code> that will hold panel
+     */
     private static void addNamePanel(JPanel targetPanel, JFrame targetFrame) {
         // Create constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
+
         // format panel constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
         // add panel to frame with constraints
-    }
+        targetFrame.add(targetPanel, layoutConstraints);
+    }//end addNamePanel()
 
     private static void addAgeComponents(JPanel targetPanel) {
 
@@ -43,7 +62,8 @@ public class NameGUI {
 
     }
 
-    private static void addInchesPanel(JPanel targetPanel, JFrame targetFrame) {
+    private static void addInchesPanel(
+        JPanel targetPanel, JFrame targetFrame) {
 
     }
 
@@ -51,7 +71,8 @@ public class NameGUI {
 
     }
 
-    private static void addAcceptPanel(JPanel targetPanel, JFrame targetFrame) {
+    private static void addAcceptPanel(
+        JPanel targetPanel, JFrame targetFrame) {
 
     }
     
@@ -95,6 +116,12 @@ public class NameGUI {
        
     }//end buildFrameUI()
 
+    /**
+     * Modifies the attributes of the target <code>JFame</code>
+     * to change:<ul><li> the layout manager</li><li> the background color
+     * </li><li>border utilized</li></ul>
+     * @param targetFrame <code>JFrame</code> that is to be customized
+     */
     private static void customizeFrame(JFrame targetFrame) {
         // Set Layout Manager
         targetFrame.setLayout(new GridBagLayout());
@@ -108,8 +135,14 @@ public class NameGUI {
         targetFrame.pack();
         // minimum size
         targetFrame.setMinimumSize(new Dimension(450, 300));
-    }
+    }//end customizeFrame()
 
+    /**
+     * Modifies the attributes of the target <code>JPanel</code>
+     * to change the layout manager, the background color,
+     * and the border utilized.
+     * @param targetPanel <code>JPanel</code> that is to be customized
+     */
     private static void customizePanel(JPanel targetPanel) {
         // set layout manager
         targetPanel.setLayout(new GridBagLayout());
@@ -118,9 +151,7 @@ public class NameGUI {
         // apply border (compound black soft bevel)
         Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
         Border softBevelBorder = BorderFactory.createRaisedSoftBevelBorder();
-        targetPanel.setBorder(BorderFactory.createCompoundBorder(softBevelBorder, blackBorder));
-    }
-
-    
-
-}
+        targetPanel.setBorder(
+            BorderFactory.createCompoundBorder(softBevelBorder, blackBorder));
+    }//end customizePanel()
+}//end NameGUI
