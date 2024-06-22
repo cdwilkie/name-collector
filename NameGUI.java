@@ -1,7 +1,7 @@
 import java.awt.*;
 //import java.awt.event.*;
 import javax.swing.*;
-//import java.text.*;
+import java.text.*;
 import javax.swing.border.*;
 
 
@@ -92,8 +92,38 @@ public class NameGUI {
     }//end addNamePanel()
 
     private static void addAgeComponents(JPanel targetPanel) {
-        //TODO
-    }
+        // Create Label
+        JLabel ageLabel = new JLabel("Age: ");
+        // Create Field
+        JFormattedTextField ageField = new JFormattedTextField(
+            NumberFormat.getIntegerInstance());
+        ageField.setColumns(15);
+
+        // Create Layout Constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
+
+        // Format Label Constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // Add Components to Panel
+        targetPanel.add(ageLabel, layoutConstraints);
+
+        // Format Label Constraints
+        layoutConstraints.gridx = 1;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // Add Components to Panel
+        targetPanel.add(ageField, layoutConstraints);
+    }//end addAgeComponents()
 
     /**
      * Adds the target <code>JPanel</code> to the target <code>
