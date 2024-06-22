@@ -54,9 +54,30 @@ public class NameGUI {
 
     }
 
+    /**
+     * Adds the target <code>JPanel</code> to the target <code>
+     * JFrame</code>. Utilizes <code>GridBagLayout</code> as layout
+     * manager to place the age panel within the main UI frame.
+     * @param targetPanel <code>JPanel</code> to be added
+     * to <code>JFrame</code>
+     * @param targetFrame <code>JFrame</code> that will hold panel
+     */
     private static void addAgePanel(JPanel targetPanel, JFrame targetFrame) {
+        // Create constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
 
-    }
+        // format panel constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 1;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // add panel to frame with constraints
+        targetFrame.add(targetPanel, layoutConstraints);
+    }//end addAgePanel()
 
     private static void addInchesComponents(JPanel targetPanel) {
 
