@@ -18,6 +18,12 @@ public class NameGUI {
      * @param args
      */
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater( new Runnable() {
             public void run() {
                 buildFrameUI();
@@ -104,7 +110,7 @@ public class NameGUI {
         // Create Field
         JFormattedTextField ageField = new JFormattedTextField(
             NumberFormat.getIntegerInstance());
-        ageField.setColumns(15);
+        ageField.setColumns(14);
 
         // Create Layout Constraints
         GridBagConstraints layoutConstraints = new GridBagConstraints();
@@ -224,9 +230,34 @@ public class NameGUI {
         targetFrame.add(targetPanel, layoutConstraints);
     }//end addInchesPanel()
 
+    /**
+     * Creates an "accept" JButton and adds it to JPanel.
+     * Uses GridBagLayout to arrange button.
+     * @param targetPanel JPanel that will hold the JButton
+     */
     private static void addAcceptComponents(JPanel targetPanel) {
-        //TODO
-    }
+        // Create Accept Button
+        JButton acceptButton = new JButton("Accept");
+        //acceptButton.setBackground(Color.LIGHT_GRAY);
+
+        // Create Layout Constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
+
+        // Format Button Layout Constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        //layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10,10,10,10);
+        layoutConstraints.gridheight = 2;
+        layoutConstraints.gridwidth = 2;
+        layoutConstraints.ipady = 40;
+
+        // Add Button to Panel
+        targetPanel.add(acceptButton, layoutConstraints);
+    }//end addAcceptComponents()
 
     /**
      * Adds the target <code>JPanel</code> to the target <code>
@@ -319,7 +350,7 @@ public class NameGUI {
         // pack()
         targetFrame.pack();
         // minimum size
-        targetFrame.setMinimumSize(new Dimension(450, 300));
+        targetFrame.setMinimumSize(new Dimension(600, 375));
     }//end customizeFrame()
 
     /**
