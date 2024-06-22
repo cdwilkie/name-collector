@@ -91,6 +91,13 @@ public class NameGUI {
         targetFrame.add(targetPanel, layoutConstraints);
     }//end addNamePanel()
 
+    /**
+     * Creates the necessary <code>JComponents</code> to
+     * collect text input for a "age" prompt. Utilizes a
+     * <code>GridBagLayout</code> to organize the elements.
+     * @param targetPanel <code>JPanel</code> to hold the
+     * arranged <code>JComponents</code>
+     */
     private static void addAgeComponents(JPanel targetPanel) {
         // Create Label
         JLabel ageLabel = new JLabel("Age: ");
@@ -150,9 +157,46 @@ public class NameGUI {
         targetFrame.add(targetPanel, layoutConstraints);
     }//end addAgePanel()
 
+    /**
+     * Creates the necessary <code>JComponents</code> to
+     * collect text input for a "inches" prompt. Utilizes a
+     * <code>GridBagLayout</code> to organize the elements.
+     * @param targetPanel  <code>JPanel</code> to hold the
+     * arranged <code>JComponents</code>
+     */
     private static void addInchesComponents(JPanel targetPanel) {
-        //TODO
-    }
+        // Create Label
+        JLabel inchesLabel = new JLabel("Inches: ");
+        // Create Field
+        JFormattedTextField inchesField = new JFormattedTextField(
+            DecimalFormat.getInstance());
+        inchesField.setColumns(15);
+
+        // Create Layout Constraints
+        GridBagConstraints layoutConstraints = new GridBagConstraints();
+
+        // Format Label Constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // Add Components to Panel
+        targetPanel.add(inchesLabel, layoutConstraints);
+
+        // Format Label Constraints
+        layoutConstraints.gridx = 1;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
+
+        // Add Components to Panel
+        targetPanel.add(inchesField, layoutConstraints);
+    }//end addInchesComponents()
 
     /**
      * Adds the target <code>JPanel</code> to the target <code>
@@ -222,40 +266,38 @@ public class NameGUI {
     private static void buildFrameUI() {
         // Make Frame
         JFrame mainFrame = new JFrame("The Frame");
+
         // Set Layout Manager
         mainFrame.setLayout(new GridBagLayout());
-        // Make jpanel
+
+        // Make Name panel
         JPanel namePanel = new JPanel();
-        // Customize Panel
+        // Set Layout, Customize, and add components
         customizePanel(namePanel);
-        // addNameComponents(JPanel)
         addNameComponents(namePanel);
-        // addNamePanel(JPanel, JFrame)
         addNamePanel(namePanel, mainFrame);
-        // Make jpanel
+
+        // Make Age Panel
         JPanel agePanel = new JPanel();
-        // Customize Panel
+        // Customize Panel, Set Layout and Add Components
         customizePanel(agePanel);
-        // addAgeComponents(jPanel)
         addAgeComponents(agePanel);
-        // addAgePanel(JPanel, JFrame)
         addAgePanel(agePanel, mainFrame);
-        // Make Jpanel
+
+        // Make Inches panel
         JPanel inchesPanel = new JPanel();
-        // Customize Panel
+        // Customize Panel, Set Layout and Add Components
         customizePanel(inchesPanel);
-        // addInchesComponents(JPanel)
         addInchesComponents(inchesPanel);
-        // addInchesPanel(JPanel, JFrame)
         addInchesPanel(inchesPanel, mainFrame);
-        // Make JPanel
+
+        // Make Accept Button Panel
         JPanel acceptPanel = new JPanel();
-        // Customize Panel
+        // Customize Panel, Set Layout and Add Components
         customizePanel(acceptPanel);
-        // addAcceptComponents(JPanel)
         addAcceptComponents(acceptPanel);
-        // addAcceptPanel(JPanel, JFrame)
         addAcceptPanel(acceptPanel, mainFrame);
+
         // Customize JFrame
         customizeFrame(mainFrame);
     }//end buildFrameUI()
