@@ -10,9 +10,14 @@ import javax.swing.border.*;
  */
 public class NameGUI {
 
+    /**
+     * Driver for GUI window. Calls the buildFrameUI() method
+     * to build and show the GUI for NameCollector.
+     * @param args
+     */
     public static void main(String[] args) {
         buildFrameUI();
-    }
+    }//end main()
 
     private static void addNameComponents(JPanel targetPanel) {
         //TODO
