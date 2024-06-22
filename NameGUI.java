@@ -96,7 +96,13 @@ public class NameGUI {
         JPanel targetPanel, JFrame targetFrame) {
 
     }
-    
+    /**
+     * Initializes the necessary components to build the GUI
+     * for the NameCollector program. Utilizes a <code>JFrame
+     * </code> to hold the <code>JPanels</code> containing the
+     * various <code>JComponents</code> that will allow the
+     * collection of data from the user, and then output results.
+     */
     private static void buildFrameUI() {
         // Make Frame
         JFrame mainFrame = new JFrame("The Frame");
