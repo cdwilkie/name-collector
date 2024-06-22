@@ -6,17 +6,23 @@ import javax.swing.border.*;
 
 
 /**
- * Serves as the GUI for the Name Collector Program
+ * Serves as the GUI for the Name Collector Program. Utilizes
+ * a main() method to drive the GUI interface.
  */
 public class NameGUI {
 
     /**
-     * Driver for GUI window. Calls the buildFrameUI() method
+     * Driver for GUI window. Makes a call to the Swing EDT
+     * and calls the buildFrameUI() method
      * to build and show the GUI for NameCollector.
      * @param args
      */
     public static void main(String[] args) {
-        buildFrameUI();
+        SwingUtilities.invokeLater( new Runnable() {
+            public void run() {
+                buildFrameUI();
+            }
+        });
     }//end main()
 
     private static void addNameComponents(JPanel targetPanel) {
