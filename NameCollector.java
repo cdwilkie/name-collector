@@ -19,7 +19,7 @@ public class NameCollector {
    }// end main()
 
 
-   private String userName;
+   private String userName, userResults;
    private int userAge;
    private double userInches;
    private Scanner scanner;
@@ -30,6 +30,7 @@ public class NameCollector {
       userName = "";
       userAge = 0;
       userInches = 0.0;
+      userResults = "";
    }
 
    // Overloaded constructor accepts scanner reference
@@ -51,6 +52,10 @@ public class NameCollector {
       return userInches;
    }//end userInches()
 
+   public String getResults() {
+      return userResults;
+   }
+
    // Setters
    public void setName(String userName) {
       this.userName = userName;
@@ -64,6 +69,12 @@ public class NameCollector {
       this.userInches = userInches;
    }//end setInches()
 
+   public void setResults() {
+      this.userResults = String.format(
+         "Hello %s. You are %d years old and %.2f inches tall.",
+         this.getName(), this.getAge(), this.getInches());
+   }
+
    // Messages
    public void greetUser() {
       System.out.println(
@@ -73,10 +84,8 @@ public class NameCollector {
    }//end greetUser()
 
    public void showResults() {
-
-      System.out.printf(
-         "Hello %s. You are %d years old and %.2f inches tall.\n", 
-         userName, userAge, userInches);
+      
+      System.out.println(this.userResults);
    }//end showResults()
 
    public void run() {
