@@ -56,6 +56,8 @@ public class NameGUI {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setBackground(Color.DARK_GRAY);
         mainFrame.pack();
+        JOptionPane.showMessageDialog(mainPanel, "Please complete the fields" +
+            " with your Name, Age, and Height in Inches", "Welcome!", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
