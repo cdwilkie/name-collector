@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
+import javax.swing.text.JTextComponent;
 
 
 public class NameGUI {
@@ -19,17 +20,14 @@ public class NameGUI {
         mainFrame = new JFrame("Name Collector");
         mainPanel = new JPanel();
         namePanel = new NamePanel();
+        addFieldFocusLogic(namePanel);
         agePanel = new AgePanel();
+        addFieldFocusLogic(agePanel);
         inchesPanel = new InchesPanel();
+        addFieldFocusLogic(inchesPanel);
         acceptPanel = new AcceptPanel();
-        acceptPanel.getButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (checkInput()) {
-                    collectData();
-                }
-            }
-        });
+        this.addButtonLogic();
+        
 
         GridBagConstraints layoutConstraints2 = new GridBagConstraints();
         mainPanel.setLayout(new GridBagLayout());
@@ -59,6 +57,21 @@ public class NameGUI {
         JOptionPane.showMessageDialog(mainPanel, "Please complete the fields" +
             " with your Name, Age, and Height in Inches", "Welcome!", JOptionPane.INFORMATION_MESSAGE);
 
+    }//end NameGUI()
+
+    public void addButtonLogic() {
+        this.acceptPanel.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkInput()) {
+                    collectData();
+                }
+            }
+        });
+    }
+
+    public void addFieldFocusLogic(JPanel targetPanel) {
+        targetPanel.getComponent(1).addFocusListener(new FieldListenerLogic(targetPanel));
     }
 
     public static void main(String[] args) {
@@ -444,4 +457,34 @@ class AcceptPanel extends JPanel {
 
 
 
+}
+
+class FieldListenerLogic implements FocusListener {
+    private JPanel targetPanel;
+    FieldListenerLogic(JPanel targetPanel) {
+        this.targetPanel = targetPanel;
+    }
+    @Override
+    public void focusGained(FocusEvent e) {
+        Component componentReference = e.getComponent();
+        if (componentReference instanceof JTextComponent) {
+            JTextComponent textFieldReference = (JTextComponent)componentReference;
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    textFieldReference.selectAll();
+                }
+            });
+            
+        }
+        
+        
+        this.targetPanel.setBackground(Color.LIGHT_GRAY);
+        
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        this.targetPanel.setBackground(Color.WHITE);
+    }
 }
