@@ -12,8 +12,10 @@ public class NameGUI {
     private AcceptPanel acceptPanel;
     private JPanel mainPanel;
     private JFrame mainFrame;
+    private NameCollector newUser;
 
     public NameGUI() {
+        newUser = new NameCollector();
         mainFrame = new JFrame("Name Collector");
         mainPanel = new JPanel();
         namePanel = new NamePanel();
@@ -187,7 +189,6 @@ public class NameGUI {
     }
 
     private void collectData() {
-        NameCollector newUser = new NameCollector();
         newUser.setName(this.getName());
         newUser.setAge(this.getAge());
         newUser.setInches(this.getInches());
