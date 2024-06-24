@@ -54,6 +54,7 @@ public class NameGUI {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setBackground(Color.DARK_GRAY);
         mainFrame.pack();
+        mainFrame.getRootPane().setDefaultButton(acceptPanel.getButton());
         JOptionPane.showMessageDialog(mainPanel, "Please complete the fields" +
             " with your Name, Age, and Height in Inches", "Welcome!", JOptionPane.INFORMATION_MESSAGE);
 
@@ -215,7 +216,7 @@ public class NameGUI {
     }
 
     private boolean checkInput() {
-        String validNamePattern = "^[a-zA-Z]+\s*[a-zA-Z]*$";
+        String validNamePattern = "^[a-zA-Z]{1,15}\s*[a-zA-Z]{0,15}$";
         String validAgePattern = "\\d{1,3}";
         String validInchesPattern = "^\\d{1,3}\\.?\\d*$";
 
