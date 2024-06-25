@@ -1,24 +1,25 @@
-import java.text.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.text.*;
 import java.awt.event.*;
-import javax.swing.border.*;
 import javax.swing.text.JTextComponent;
 
 
-public class NameGUI {
+
+/**
+ * 
+ */
+public class NameGUI extends JPanel {
+
     private NamePanel namePanel;
     private AgePanel agePanel;
     private InchesPanel inchesPanel;
     private AcceptPanel acceptPanel;
-    private JPanel mainPanel;
-    private JFrame mainFrame;
+
     private NameCollector newUser;
 
     public NameGUI() {
-        newUser = new NameCollector();
-        mainFrame = new JFrame("Name Collector");
-        mainPanel = new JPanel();
         namePanel = new NamePanel();
         addFieldFocusLogic(namePanel);
         agePanel = new AgePanel();
@@ -26,113 +27,39 @@ public class NameGUI {
         inchesPanel = new InchesPanel();
         addFieldFocusLogic(inchesPanel);
         acceptPanel = new AcceptPanel();
-        this.addButtonLogic();
-        
+        addButtonLogic(acceptPanel);
 
-        GridBagConstraints layoutConstraints2 = new GridBagConstraints();
-        mainPanel.setLayout(new GridBagLayout());
-        mainPanel.setBackground(Color.DARK_GRAY);
+        // NameCollector found in NameCollector.java
+        newUser = new NameCollector();
 
-        // gridbag layout constraints
+        // Customize Panel
+        this.setLayout(new GridBagLayout());
+        this.setBackground(Color.DARK_GRAY);
         GridBagConstraints layoutConstraints = new GridBagConstraints();
-        // setlayout
-        mainFrame.setLayout(new GridBagLayout());
 
-        // add name components
+        // Add Each Custom Sub-Panel
         this.addNamePanel(layoutConstraints);
-        // add age components
-        this.addAgePanel(layoutConstraints);
-        // add inches componenets
-        this.addInchesPanel(layoutConstraints);
-        // add accept components
+        this.addAgePanel(layoutConstraints); 
+        this.addInchesPanel(layoutConstraints); 
         this.addAcceptPanel(layoutConstraints);
-
-        this.addMainPanel(layoutConstraints2);
-
-        mainFrame.setVisible(true);
-        mainFrame.setMinimumSize(new Dimension(600, 375));
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.getContentPane().setBackground(Color.DARK_GRAY);
-        mainFrame.pack();
-        mainFrame.getRootPane().setDefaultButton(acceptPanel.getButton());
-        JOptionPane.showMessageDialog(mainPanel, "Please complete the fields" +
-            " with your Name, Age, and Height in Inches", "Welcome!", JOptionPane.INFORMATION_MESSAGE);
-
-    }//end NameGUI()
-
-    public void addButtonLogic() {
-        this.acceptPanel.getButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (checkInput()) {
-                    collectData();
-                }
-            }
-        });
-    }
-
-    public void addFieldFocusLogic(JPanel targetPanel) {
-        targetPanel.getComponent(1).addFocusListener(new FieldListenerLogic(targetPanel));
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(
-                UIManager.getCrossPlatformLookAndFeelClassName());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new NameGUI();
-            }
-        });
-    }
-
-    public String getName() {
-        return namePanel.getName();
-    }
-
-    public int getAge() {
-        return agePanel.getAge();
-    }
-
-    public double getInches() {
-        return inchesPanel.getInches();
-    }
-
-    public void setName(String userName) {
-        namePanel.setName(userName);
-    }
-
-    public void setAge(int userAge) {
-        agePanel.setAge(userAge);
-    }
-
-    public void setInches(double userInches) {
-        inchesPanel.setInches(userInches);
-    }
+    }//end constructor
 
     private void addNamePanel(GridBagConstraints layoutConstraints) {
-        
-         // format panel constraints
-         layoutConstraints.gridx = 0;
-         layoutConstraints.gridy = 0;
-         layoutConstraints.fill = GridBagConstraints.BOTH;
-         layoutConstraints.anchor = GridBagConstraints.BASELINE;
-         layoutConstraints.weightx = 1.0;
-         layoutConstraints.weighty = 1.0;
-         layoutConstraints.insets = new Insets(10, 10, 10, 10);
- 
-         this.customizePanel(namePanel);
-         // add panel to frame with constraints
-         mainPanel.add(namePanel, layoutConstraints);
+        // format panel constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 0;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        this.customizePanel(namePanel);
+        // add panel to frame with constraints
+        this.add(namePanel, layoutConstraints);
     }
 
     private void addAgePanel(GridBagConstraints layoutConstraints) {
-
         // format panel constraints
         layoutConstraints.gridx = 0;
         layoutConstraints.gridy = 1;
@@ -144,27 +71,25 @@ public class NameGUI {
 
         this.customizePanel(agePanel);
         // add panel to frame with constraints
-        mainPanel.add(agePanel, layoutConstraints);
+        this.add(agePanel, layoutConstraints);
     }
 
     private void addInchesPanel(GridBagConstraints layoutConstraints) {
-        
-         // format panel constraints
-         layoutConstraints.gridx = 0;
-         layoutConstraints.gridy = 2;
-         layoutConstraints.fill = GridBagConstraints.BOTH;
-         layoutConstraints.anchor = GridBagConstraints.BASELINE;
-         layoutConstraints.weightx = 1.0;
-         layoutConstraints.weighty = 1.0;
-         layoutConstraints.insets = new Insets(10, 10, 10, 10);
+        // format panel constraints
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 2;
+        layoutConstraints.fill = GridBagConstraints.BOTH;
+        layoutConstraints.anchor = GridBagConstraints.BASELINE;
+        layoutConstraints.weightx = 1.0;
+        layoutConstraints.weighty = 1.0;
+        layoutConstraints.insets = new Insets(10, 10, 10, 10);
  
-         this.customizePanel(inchesPanel);
-         // add panel to frame with constraints
-         mainPanel.add(inchesPanel, layoutConstraints);
+        this.customizePanel(inchesPanel);
+        // add panel to frame with constraints
+        this.add(inchesPanel, layoutConstraints);
     }
 
     private void addAcceptPanel(GridBagConstraints layoutConstraints) {
-        
         // format panel constraints
         layoutConstraints.gridx = 2;
         layoutConstraints.gridy = 3;
@@ -178,7 +103,7 @@ public class NameGUI {
 
         this.customizePanel(acceptPanel);
         // add panel to frame with constraints
-        mainPanel.add(acceptPanel, layoutConstraints);
+        this.add(acceptPanel, layoutConstraints);
     }
 
     private void customizePanel(JPanel targetPanel) {
@@ -191,93 +116,130 @@ public class NameGUI {
             BorderFactory.createCompoundBorder(softBevelBorder, blackBorder));
     }//end customizePanel()
 
-    private void addMainPanel(GridBagConstraints layoutConstraints) {
-        // format panel constraints
-        layoutConstraints.gridx = 0;
-        layoutConstraints.gridy = 0;
-        layoutConstraints.fill = GridBagConstraints.BOTH;
-        //layoutConstraints.anchor = GridBagConstraints.BASELINE;
-        layoutConstraints.weightx = 1.0;
-        layoutConstraints.weighty = 1.0;
-        //layoutConstraints.insets = new Insets(10, 10, 10, 10);
+    private void addButtonLogic(AcceptPanel targetPanel) {
+        targetPanel.getAcceptButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e ) {
+                if (checkInput()) {
+                    collectData();
+                }//end if input valid
+            }//end actionPerformed
+        });//end actionListener
+    }//end addButtonLogic()
 
-        mainFrame.add(mainPanel, layoutConstraints);
-    }
+    private void addFieldFocusLogic(JPanel targetPanel) {
+        targetPanel.getComponent(1).addFocusListener(new FieldListenerLogic(targetPanel));
+    }//end addFieldFocusLogic()
 
     private void collectData() {
-        newUser.setName(this.getName());
-        newUser.setAge(this.getAge());
-        newUser.setInches(this.getInches());
+        newUser.setName(this.namePanel.getName());
+        newUser.setAge((Integer)this.agePanel.getAge());
+        newUser.setInches((Double)this.inchesPanel.getInches());
         newUser.setResults();
 
         JOptionPane.showMessageDialog(
-            this.mainPanel, newUser.getResults(), "User Results",
+            this, newUser.getResults(), "User Results",
             JOptionPane.INFORMATION_MESSAGE);
-    }
+    }//end collectData()
 
     private boolean checkInput() {
         String validNamePattern = "^[a-zA-Z]{1,15}\s*[a-zA-Z]{0,15}$";
         String validAgePattern = "\\d{1,3}";
         String validInchesPattern = "^\\d{1,3}\\.?\\d*$";
 
-        if ((!this.getName().matches(validNamePattern))) {
+        if ((!this.namePanel.getNameField().getText().matches(validNamePattern))) {
             JOptionPane.showMessageDialog(
-                this.mainPanel, "Name Error", "Input Error",
+                this, "Name Error", "Input Error",
                 JOptionPane.ERROR_MESSAGE); 
                 return false;
         }
 
-        if ((!this.agePanel.getAgeFieldText().matches(validAgePattern))) {
+        if ((!this.agePanel.getAgeField().getText().matches(validAgePattern))) {
             JOptionPane.showMessageDialog(
-                this.mainPanel, "Age Error", "Input Error",
+                this, "Age Error", "Input Error",
                 JOptionPane.ERROR_MESSAGE); 
                 return false;
         }
 
-        if ((!this.inchesPanel.getInchesFieldText().matches(validInchesPattern))) {
+        if ((!this.inchesPanel.getInchesField().getText().matches(validInchesPattern))) {
             JOptionPane.showMessageDialog(
-                this.mainPanel, "Inches Error", "Input Error",
+                this, "Inches Error", "Input Error",
                 JOptionPane.ERROR_MESSAGE); 
                 return false;
         }
         return true;
-    }
+    }//end checkInput()
 
-}
+    public static void main(String[] args) {
 
+        runDemo();
+    }//end main()
+
+    public static void runDemo() {
+        JFrame mainFrame = new JFrame("Name Collector");
+        mainFrame.setLayout(new GridLayout(1,2));
+        mainFrame.add(new NameGUI());
+
+        mainFrame.setVisible(true);
+        mainFrame.setMinimumSize(new Dimension(600, 375));
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.pack();
+    }//end runDemo()
+}//end NameGUI3 class
+
+/**
+ * Subclasse JPanel to create a panel that holds a
+ * JLabel and a JTextField to collect data from user.
+ */
 class NamePanel extends JPanel {
-
     private JLabel nameLabel;
     private JTextField nameField;
 
-    public NamePanel() {
-        nameLabel = new JLabel("Name: ");
+    /**
+     * Default constructor adds JLabel "Name" and JTextField
+     * to JPanel using GridBagLayout as layout manager.
+     */
+    NamePanel() {
+        nameLabel = new JLabel();
+        nameLabel.setText("Name:");
+
         nameField = new JTextField();
         nameField.setColumns(15);
-        // create gridbag constraints
-        GridBagConstraints layoutConstraints = new GridBagConstraints();
-        // set layout
+
+        GridBagConstraints layoutConstraints =
+            new GridBagConstraints();
         this.setLayout(new GridBagLayout());
 
-        // format label layout
+        // add label
         this.addLabel(layoutConstraints);
-        // add label component
-        // format field layout
-        // add field component
-        this.addField(layoutConstraints);
-    }
 
+        // add textfield
+        this.addNameField(layoutConstraints);
+    }//end constructor
+
+    /**
+     * Returns reference to instance's nameField 
+     * JTextField
+     * @return JTextField holding Name data
+     */
+    public JTextField getNameField() {
+
+        return this.nameField;
+    }//end getNameField()
+
+    /**
+     * Returns the String value stored
+     */
     public String getName() {
+        return this.nameField.getText();
+    }//end getName()
 
-        return nameField.getText();
-    }
-
-    public void setName(String userName) {
-        nameField.setText(userName);
-    }
-
+    /**
+     * Uses GridBagConstraints to place the JLabel within the JPanel
+     * @param layoutConstraints GridBagLayout constraints for JLabel
+     */
     private void addLabel(GridBagConstraints layoutConstraints) {
-        //format label constraints
+        // format label constraints
         layoutConstraints.gridx = 0;
         layoutConstraints.gridy = 0;
         layoutConstraints.fill = GridBagConstraints.BOTH;
@@ -285,11 +247,16 @@ class NamePanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // add label to custom JPanel
         this.add(nameLabel, layoutConstraints);
-    }
-    
-    private void addField(GridBagConstraints layoutConstraints) {
-        //format field constraints
+    }//end addLabel()
+
+    /**
+     * Uses GridBagConstraints to place the JTextField within the Jpanel
+     * @param layoutConstraints GridBagLayout constraints for JTextField
+     */
+    private void addNameField(GridBagConstraints layoutConstraints) {
+        // format label constraints
         layoutConstraints.gridx = 1;
         layoutConstraints.gridy = 0;
         layoutConstraints.fill = GridBagConstraints.BOTH;
@@ -297,46 +264,59 @@ class NamePanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // add label to custom JPanel
         this.add(nameField, layoutConstraints);
-    }
-}
+    }//end addNameField()
+}//end NamePanel class
 
-class AgePanel extends JPanel {
-
+/**
+ * Subclasses JPanel to create a panel that holds an "age" JLabel
+ * and a JFormattedTextField that accepts integers for the user's age.
+ */
+class AgePanel extends JPanel{
     private JLabel ageLabel;
-    private JFormattedTextField ageField; 
-   
-    public AgePanel() {
-        ageLabel  = new JLabel("Age: ");
-        ageField = new JFormattedTextField(
-            NumberFormat.getIntegerInstance());
+    private JFormattedTextField ageField;
+
+    /**
+     * Default constructor sets JLabel to "Age" and creates a
+     * JFormattedTextField that accepts integers for the age value.
+     * Adds the components to the JPanel
+     */
+    AgePanel() {
+        ageLabel = new JLabel();
+        ageLabel.setText("Age:");
+
+        // Only accepts integers as valid input
+        ageField = new JFormattedTextField(NumberFormat.getIntegerInstance());
         ageField.setColumns(14);
-        // create gridbag constraints
+
         GridBagConstraints layoutConstraints = new GridBagConstraints();
-        // set layout
         this.setLayout(new GridBagLayout());
 
-        // format label layout
-        // add label component
         this.addLabel(layoutConstraints);
-        // format field layout
-        // add field component
-        this.addField(layoutConstraints);
-    }
 
-    public String getAgeFieldText() {
-        return ageField.getText();
-    }
+        this.addTextField(layoutConstraints);
+    }//end constructor
+
+    /**
+     * Returns reference to the instance's JFormattedTextField
+     * ageField
+     * @return JFormattedTextField reference to age field
+     */
+    public JFormattedTextField getAgeField() {
+        return this.ageField;
+    }//end getAgeField()
 
     public int getAge() {
+        return Integer.parseInt(this.ageField.getText());
+    }//end getAge()
 
-        return Integer.parseInt(ageField.getText());
-    }
-
-    public void setAge(int userAge) {
-        ageField.setText(String.valueOf(userAge));
-    }
-
+    /**
+     * Adds the JLabel component to the custom JPanel replacing the
+     * provided layoutconstraint reference with own constraints. 
+     * @param layoutConstraints reference to a GridBagConstraints that 
+     * will be overwritten in method
+     */
     private void addLabel(GridBagConstraints layoutConstraints) {
         // Format Label Constraints
         layoutConstraints.gridx = 0;
@@ -346,10 +326,18 @@ class AgePanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // Add Label to Panel
         this.add(ageLabel, layoutConstraints);
-    }
+    }//end addLabel()
 
-    private void addField(GridBagConstraints layoutConstraints) {
+    /**
+     * Adds the JFormattedTextField ageField to the custom Jpanel
+     * AgePanel instance. Overwrites the provided GridBagConstraint
+     * reference with own constraints.
+     * @param layoutConstraints GridBagConstraints reference to be
+     * overwritten
+     */
+    private void addTextField(GridBagConstraints layoutConstraints) {
         // Format Label Constraints
         layoutConstraints.gridx = 1;
         layoutConstraints.gridy = 0;
@@ -358,47 +346,57 @@ class AgePanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // Add Field to Panel
         this.add(ageField, layoutConstraints);
-    }
-}
+    }//end addTextField()
+}//end AgePanel class
 
-class InchesPanel extends JPanel {
-
+/**
+ * Subclasses JPanel to create a panel that holds an "inches" JLabel
+ * and a JFormattedTextField that accepts decimal numbers for the
+ * user's height in inches.
+ */
+class InchesPanel extends JPanel{
     private JLabel inchesLabel;
     private JFormattedTextField inchesField;
 
-    public InchesPanel() {
-        inchesLabel = new JLabel("Inches: ");
-        inchesField = new JFormattedTextField(
-            DecimalFormat.getNumberInstance());
+    /**
+     * Default constructor initializes the JLabel with "Inches"
+     * and creates a JFormattedTextField to accept decimal numbers.
+     * Components are added to panel using GridBagLayout manager.
+     */
+    InchesPanel() {
+        inchesLabel = new JLabel();
+        inchesLabel.setText("Inches:");
+
+        inchesField = new JFormattedTextField(DecimalFormat.getInstance());
         inchesField.setColumns(15);
-        // create gridbag constraints
+
         GridBagConstraints layoutConstraints = new GridBagConstraints();
-        // set layout
         this.setLayout(new GridBagLayout());
-        // format label layout
-        // add label component
+
         this.addLabel(layoutConstraints);
-        // format field layout
-        // add field component
-        this.addField(layoutConstraints);
 
-    }
+        this.addTextField(layoutConstraints);
+    }//end constructor
 
-    public String getInchesFieldText() {
-        return inchesField.getText();
-    }
+    /**
+     * Returns reference to JFormattedTextField inches field
+     * @return JFormattedTextField reference to inches field
+     */
+    public JFormattedTextField getInchesField() {
+        return this.inchesField;
+    }//end getInchesField()
 
     public double getInches() {
-    
-        return Double.parseDouble(inchesField.getText());
+        return Double.parseDouble(this.getInchesField().getText());
     }
 
-    public void setInches(double userInches) {
-
-        inchesField.setText(String.valueOf(userInches));
-    }
-
+    /**
+     * Adds the JLabel "inches" to the custom JPanel InchesPanel
+     * @param layoutConstraints GridBagConstraints reference
+     * that wil be overwritten
+     */
     private void addLabel(GridBagConstraints layoutConstraints) {
         // Format Label Constraints
         layoutConstraints.gridx = 0;
@@ -408,10 +406,17 @@ class InchesPanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // Add Label to JPanel AgePanel
         this.add(inchesLabel, layoutConstraints);
-    }
+    }//end addLabel()
 
-    private void addField(GridBagConstraints layoutConstraints) {
+    /**
+     * Adds the JFormattedTextField inchesField to the custom
+     * JPanel InchesPanel using GridBagConstraints from method.
+     * @param layoutConstraints Refernce to GridBagConstraints object
+     * that will be overwritten inside method.
+     */
+    private void addTextField(GridBagConstraints layoutConstraints) {
         // Format Label Constraints
         layoutConstraints.gridx = 1;
         layoutConstraints.gridy = 0;
@@ -420,51 +425,79 @@ class InchesPanel extends JPanel {
         layoutConstraints.weighty = 1.0;
         layoutConstraints.insets = new Insets(10, 10, 10, 10);
 
+        // Add JFormmatedTextField to JPanel
         this.add(inchesField, layoutConstraints);
-    }
-}
+    }//end addTextField()
+}//end InchesPanel class
 
-class AcceptPanel extends JPanel {
-
+/**
+ * Subclass of JPanel that holds a JButton that will
+ * act as the "Accept" button for the GUI.
+ */
+class AcceptPanel extends JPanel{
     private JButton acceptButton;
 
-    public AcceptPanel() {
-        acceptButton = new JButton("Accept");
+    /**
+     * Default constructor creates a JButton named
+     * "Accept" and places the button within the JPanel
+     * using GridBagConstraints and GridBagLayout.
+     */
+    AcceptPanel() {
+        acceptButton = new JButton();
+        acceptButton.setText("Accept");
+
         GridBagConstraints layoutConstraints = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
+
         this.addButton(layoutConstraints);
-    }
+    }//end constructor
 
-    private void addButton(GridBagConstraints layoutConstraints) {
-        // Format Button Layout Constraints
-        layoutConstraints.gridx = 0;
-        layoutConstraints.gridy = 0;
-        layoutConstraints.fill = GridBagConstraints.BOTH;
-        //layoutConstraints.anchor = GridBagConstraints.BASELINE;
-        layoutConstraints.weightx = 1.0;
-        layoutConstraints.weighty = 1.0;
-        layoutConstraints.insets = new Insets(10,10,10,10);
-        layoutConstraints.gridheight = 2;
-        layoutConstraints.gridwidth = 2;
-        layoutConstraints.ipady = 40;
-
-        this.add(acceptButton, layoutConstraints);
-    }
-
-    public JButton getButton() {
-
+    /**
+     * Returns reference to the JButton component of the
+     * instance.
+     * @return JButton reference to "Accept" button
+     */
+    public JButton getAcceptButton() {
         return this.acceptButton;
-    }
+    }//end getAcceptButton()
 
-
-
-}
+    /**
+     * Adds the JButton "Accept" to the custom JPanel using
+     * the method's GridBagConstraints values to overwite
+     * the provided reference.
+     * @param layoutConstraints Reference to GridBagConstraints
+     * object that will be overwritten with method values.
+     */
+    private void addButton(GridBagConstraints layoutConstraints) {
+         // Format Button Layout Constraints
+         layoutConstraints.gridx = 0;
+         layoutConstraints.gridy = 0;
+         layoutConstraints.fill = GridBagConstraints.BOTH;
+         //layoutConstraints.anchor = GridBagConstraints.BASELINE;
+         layoutConstraints.weightx = 1.0;
+         layoutConstraints.weighty = 1.0;
+         layoutConstraints.insets = new Insets(10,10,10,10);
+         layoutConstraints.gridheight = 2;
+         layoutConstraints.gridwidth = 2;
+         layoutConstraints.ipady = 40;
+ 
+         // Add Button to JPanel
+         this.add(acceptButton, layoutConstraints);
+    }//end addButton()
+}//end AcceptPanel class
 
 class FieldListenerLogic implements FocusListener {
     private JPanel targetPanel;
+
+    /**
+     * Default Constructor assigns the passed JPanel reference
+     * to the instance var targetPanel.
+     * @param targetPanel
+     */
     FieldListenerLogic(JPanel targetPanel) {
         this.targetPanel = targetPanel;
-    }
+    }//end constructor
+
     @Override
     public void focusGained(FocusEvent e) {
         Component componentReference = e.getComponent();
@@ -476,16 +509,14 @@ class FieldListenerLogic implements FocusListener {
                     textFieldReference.selectAll();
                 }
             });
-            
-        }
-        
-        
+        }//end if component is JTextComponent
+
         this.targetPanel.setBackground(Color.LIGHT_GRAY);
         
-    }
+    }//end focusGained()
 
     @Override
     public void focusLost(FocusEvent e) {
         this.targetPanel.setBackground(Color.WHITE);
-    }
-}
+    }//end focusLost()
+}//end FieldListenerLogic class
