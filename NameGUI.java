@@ -8,7 +8,9 @@ import javax.swing.text.JTextComponent;
 
 
 /**
- * 
+ * GUI for NameCollector program. Creates a JPanel that is 
+ * populated with subpanels. User enters name, age, and height
+ * in inches and GUI outputs results.
  */
 public class NameGUI extends JPanel {
 
@@ -19,6 +21,10 @@ public class NameGUI extends JPanel {
 
     private NameCollector newUser;
 
+    /** Default constructor initialzes each Panel and adds
+     * it to the main GUI panel. Sets layout manager to use
+     * GridBagLayout. Adds event listener and focus listener.
+     */
     public NameGUI() {
         namePanel = new NamePanel();
         addFieldFocusLogic(namePanel);
